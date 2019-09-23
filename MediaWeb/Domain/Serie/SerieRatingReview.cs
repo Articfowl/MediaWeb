@@ -9,9 +9,7 @@ namespace MediaWeb.Domain.Serie
     public class SerieRatingReview
     {
         public int SerieEpisodeId { get; set; }
-        public SerieEpisode SerieEpisode { get; set; }
         public string UserId { get; set; }
-        public IdentityUser User { get; set; }
         public string Review { get; set; }
         public int Rating { get; set; }
     }

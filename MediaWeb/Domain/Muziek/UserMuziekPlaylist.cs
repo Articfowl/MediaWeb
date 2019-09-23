@@ -9,10 +9,7 @@ namespace MediaWeb.Domain.Muziek
     public class UserMuziekPlaylist
     {
         public int MuziekId { get; set; }
-        public Nummer Nummer { get; set; }
         public int PlaylistId { get; set; }
-        public MuziekPlaylist Playlist { get; set; }
         public string UserId { get; set; }
-        public IdentityUser User { get; set; }
     }
 }

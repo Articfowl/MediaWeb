@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace MediaWeb.Domain.Film
 {
-    public class GenreFilm
+    public class FilmGezienStatus
     {
-        public int FilmId { get; set; }
-        public int GenreId { get; set; }
+        public int Id { get; set; }
+        public string Status { get; set; }
     }
 }

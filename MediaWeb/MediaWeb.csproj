@@ -12,4 +12,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Models\Muziek\" />
+    <Folder Include="Models\Serie\" />
+    <Folder Include="Models\Podcast\" />
+  </ItemGroup>
+
 </Project>

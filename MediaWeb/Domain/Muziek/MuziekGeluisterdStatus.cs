@@ -5,12 +5,9 @@ using System.Threading.Tasks;
 
 namespace MediaWeb.Domain.Muziek
 {
-    public class MuziekAlbum
+    public class MuziekGeluisterdStatus
     {
         public int Id { get; set; }
-        public string Titel { get; set; }
-        public ICollection<Nummer> Nummer { get; set; }
-        public byte[] AlbumArt { get; set; }
-
+        public string Status { get; set; }
     }
 }

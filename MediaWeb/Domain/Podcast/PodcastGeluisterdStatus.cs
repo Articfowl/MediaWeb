@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace MediaWeb.Domain.Podcast
 {
-    public class GenrePodcast
+    public class PodcastGeluisterdStatus
     {
-        public int GenreId { get; set; }
-        public int PodcastId { get; set; }
+        public int Id { get; set; }
+        public string Status { get; set; }
     }
 }

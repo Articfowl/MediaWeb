@@ -10,6 +10,7 @@ namespace MediaWeb.Domain.Serie
         public int Id { get; set; }
         public string Titel { get; set; }
         public bool Zichtbaar { get; set; }
+        public byte[] SerieArt { get; set; }
         public ICollection<SerieEpisode> Episode { get; set; }
         public ICollection<GenreSerie> Genres { get; set; }
     }

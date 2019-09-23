@@ -13,11 +13,12 @@ namespace MediaWeb.Domain.Film
         public int Lengte { get; set; }
         public string Beschrijving { get; set; }
         public bool Zichtbaar { get; set; }
-        public Byte[] Foto { get; set; }
+        public byte[] Foto { get; set; }
         public ICollection<GenreFilm> Genres { get; set; }
         public ICollection<FilmRatingReview> RatingReviews { get; set; }
         public ICollection<RegisseurFilm> Regisseurs { get; set; }
         public ICollection<UserFilmFavourite> Favourites { get; set; }
         public ICollection<UserFilmPlaylist> Playlists { get; set; }
+        public ICollection<UserFilmGezienStatus> FilmGezienStatuses { get; set; }
     }
 }

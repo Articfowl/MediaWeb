@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace MediaWeb.Domain.Serie
 {
-    public class GenreSerie
+    public class SerieGezienStatus
     {
-        public int SerieId { get; set; }
-        public int GenreId { get; set; }
+        public int Id { get; set; }
+        public string Status { get; set; }
     }
 }

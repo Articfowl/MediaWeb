@@ -11,7 +11,8 @@ namespace MediaWeb.Domain.Podcast
         public string Titel { get; set; }
         public string Auteur { get; set; }
         public bool Zichtbaar { get; set; }
-        public ICollection<PodcastGenre> Genres {get;set;}
+        public byte[] PodcastArt { get; set; }
+        public ICollection<GenrePodcast> Genres {get;set;}
         public ICollection<PodcastEpisode> Episodes { get; set; }
     }
 }

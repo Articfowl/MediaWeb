@@ -9,8 +9,6 @@ namespace MediaWeb.Domain.Podcast
     public class UserPodcastFavourite
     {
         public int PodcastEpisodeId { get; set; }
-        public PodcastEpisode PodcastEpisode { get; set; }
         public string UserId { get; set; }
-        public IdentityUser User { get; set; }
     }
 }

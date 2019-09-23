@@ -16,9 +16,9 @@ namespace MediaWeb.Domain.Muziek
         public MuziekAlbum Album { get; set; }
         public bool Zichtbaar { get; set; }
         public ICollection<GenreMuziek> Genres { get; set; }
-        public  ICollection<MuziekRatingReview> RatingReviews { get; set; }
-        public Byte[] AlbumArt { get; set; }
+        public ICollection<MuziekRatingReview> RatingReviews { get; set; }
         public ICollection<UserMuziekFavourite> Favourites { get; set; }
         public ICollection<UserMuziekPlaylist> Playlists { get; set; }
+        public ICollection<UserMuziekGeluisterdStatus> GeluisterdStatus { get; set; }
     }
 }

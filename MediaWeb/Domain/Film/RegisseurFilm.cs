@@ -8,8 +8,6 @@ namespace MediaWeb.Domain.Film
     public class RegisseurFilm
     {
         public int FilmId { get; set; }
-        public Film Film { get; set; }
         public int RegisseurId { get; set; }
-        public FilmRegisseur Regisseur { get; set; }
     }
 }
