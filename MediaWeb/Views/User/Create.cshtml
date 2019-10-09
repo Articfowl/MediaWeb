@@ -1,0 +1,16 @@
+﻿@model  MediaWeb.Models.User.ListCreateViewModel
+<h1>Create your playlist.</h1>
+<form asp-action="Create" asp-controller="User">
+    <div class="form-group">
+        <label asp-for="Titel"></label>
+        <input asp-for="Titel" />
+        <span class="text-danger" asp-validation-for="Titel"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Type"></label>
+        <select asp-for="Type" asp-items="@Model.TypeList"></select>
+    </div>
+    <div class="form-group">
+        <button class="btn-primary" type="submit">Maak playlist</button>
+    </div>
+</form>

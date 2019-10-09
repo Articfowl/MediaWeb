@@ -10,11 +10,9 @@ namespace MediaWeb.Domain.Muziek
         public int Id { get; set; }
         public string Titel { get; set; }
         public int Lengte { get; set; }
-        public int ArtiestId { get; set; }
-        public MuziekArtiest Artiest { get; set; }
         public int AlbumId { get; set; }
         public MuziekAlbum Album { get; set; }
-        public bool Zichtbaar { get; set; }
+        public bool Zichtbaar { get; set; } = true;
         public ICollection<GenreMuziek> Genres { get; set; }
         public ICollection<MuziekRatingReview> RatingReviews { get; set; }
         public ICollection<UserMuziekFavourite> Favourites { get; set; }

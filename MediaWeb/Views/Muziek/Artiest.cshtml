@@ -1,0 +1,13 @@
+﻿@model MediaWeb.Models.Muziek.ArtiestCreateViewModel
+<small> Artiest niet gevonden! </small>
+<h1>Nieuwe artiest aanmaken</h1>
+<form  asp-action="Artiest" asp-controller="Muziek">
+    <div class="form-group">
+        <label asp-for="Naam"></label>
+        <input asp-for="Naam" />
+        <span class="text-danger" asp-validation-for="Naam"></span>
+    </div>
+    <div class="form-group">
+        <button class="btn-primary" type="submit">Maak artiest</button>
+    </div>
+</form>

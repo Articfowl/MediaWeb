@@ -12,7 +12,7 @@ namespace MediaWeb.Domain.Film
         public string Titel { get; set; }
         public int Lengte { get; set; }
         public string Beschrijving { get; set; }
-        public bool Zichtbaar { get; set; }
+        public bool Zichtbaar { get; set; } = true;
         public byte[] Foto { get; set; }
         public ICollection<GenreFilm> Genres { get; set; }
         public ICollection<FilmRatingReview> RatingReviews { get; set; }

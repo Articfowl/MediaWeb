@@ -1,0 +1,62 @@
+﻿@model MediaWeb.Models.Muziek.MuziekEditViewModel 
+<h1>Edit</h1>
+@switch (Model.Type)
+{
+    case 0:
+        <form asp-action="Edit" asp-controller="Muziek" asp-route-type="@Model.Type">
+            <div class="form-group">
+                <label asp-for="Artiest"></label>
+                <input asp-for="Artiest" />
+                <span class="text-danger" asp-validation-for="Artiest"></span>
+            </div>
+            <div class="form-group">
+                <button class="btn-primary" type="submit">Save edit</button>
+            </div>
+        </form>
+        break;
+    case 1:
+        <form enctype="multipart/form-data" asp-action="Edit" asp-controller="Muziek" asp-route-type="@Model.Type">
+            <div class="form-group">
+                <label asp-for="AlbumTitel"></label>
+                <input asp-for="AlbumTitel" />
+                <span class="text-danger" asp-validation-for="AlbumTitel"></span>
+            </div>
+            <div class="form-group"> <strong>Current Picture</strong>><img src="@Model.GetPicture" /></div>
+            <div class="form-group">
+                <label asp-for="AlbumArt"></label>
+                <input asp-for="AlbumArt" />
+                <span class="text-danger" asp-validation-for="AlbumArt"></span>
+            </div>
+            <div class="form-group">
+                <button class="btn-primary" type="submit">Save edit</button>
+            </div>
+        </form>
+        break;
+    case 2:
+        <form asp-action="Edit" asp-controller="Muziek" asp-route-type="@Model.Type">
+            <div class="form-group">
+                <label asp-for="SongTitel"></label>
+                <input asp-for="SongTitel" />
+                <span class="text-danger" asp-validation-for="SongTitel"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lengte"></label>
+                <input asp-for="Lengte" />
+                <span class="text-danger" asp-validation-for="Lengte"></span>
+            </div>
+            @if (User.IsInRole("Admin"))
+            {
+        <div class="form-group">
+            <label asp-for="Zichtbaar"></label>
+            <input type="checkbox"  asp-for="Zichtbaar" />
+            <span class="text-danger" asp-validation-for="Zichtbaar"></span>
+        </div>
+            }
+            <div class="form-group">
+                <button class="btn-primary" type="submit">Save edit</button>
+            </div>
+        </form>
+        break;
+    default:
+        break;
+}

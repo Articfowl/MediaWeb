@@ -166,7 +166,7 @@ namespace MediaWeb.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Naam");
+                    b.Property<string>("Naam");
 
                     b.HasKey("Id");
 
@@ -257,9 +257,13 @@ namespace MediaWeb.Migrations
 
                     b.Property<byte[]>("AlbumArt");
 
+                    b.Property<int>("ArtiestId");
+
                     b.Property<string>("Titel");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ArtiestId");
 
                     b.ToTable("MuziekAlbum");
                 });
@@ -419,8 +423,6 @@ namespace MediaWeb.Migrations
 
                     b.Property<int>("AlbumId");
 
-                    b.Property<int>("ArtiestId");
-
                     b.Property<int>("Lengte");
 
                     b.Property<string>("Titel");
@@ -430,8 +432,6 @@ namespace MediaWeb.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AlbumId");
-
-                    b.HasIndex("ArtiestId");
 
                     b.ToTable("Nummer");
                 });
@@ -483,220 +483,6 @@ namespace MediaWeb.Migrations
                     b.HasIndex("NummerId");
 
                     b.ToTable("UserMuziekPlaylist");
-                });
-
-            modelBuilder.Entity("MediaWeb.Domain.Podcast.GenrePodcast", b =>
-                {
-                    b.Property<int>("GenreId");
-
-                    b.Property<int>("PodcastId");
-
-                    b.HasKey("GenreId", "PodcastId");
-
-                    b.HasIndex("PodcastId");
-
-                    b.ToTable("GenrePodcast");
-                });
-
-            modelBuilder.Entity("MediaWeb.Domain.Podcast.Podcast", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Auteur");
-
-                    b.Property<byte[]>("PodcastArt");
-
-                    b.Property<string>("Titel");
-
-                    b.Property<bool>("Zichtbaar");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Podcast");
-                });
-
-            modelBuilder.Entity("MediaWeb.Domain.Podcast.PodcastEpisode", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Lengte");
-
-                    b.Property<int>("PodcastId");
-
-                    b.Property<DateTime>("ReleaseDate");
-
-                    b.Property<string>("Titel");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PodcastId");
-
-                    b.ToTable("PodcastEpisode");
-                });
-
-            modelBuilder.Entity("MediaWeb.Domain.Podcast.PodcastGeluisterdStatus", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Status");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PodcastGeluisterdStatus");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Status = "Niet geluisterd"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Status = "Wil ik niet naar luisteren"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Status = "Geluisterd"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Status = "Wil ik naar luisteren"
-                        });
-                });
-
-            modelBuilder.Entity("MediaWeb.Domain.Podcast.PodcastGenre", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Genre");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PodcastGenre");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Genre = "Science"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Genre = "Comedy"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Genre = "Educational"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Genre = "Gaming"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Genre = "Music"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Genre = "News"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Genre = "Sci-Fi"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Genre = "Sport"
-                        });
-                });
-
-            modelBuilder.Entity("MediaWeb.Domain.Podcast.PodcastPlaylist", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Titel");
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PodcastPlaylist");
-                });
-
-            modelBuilder.Entity("MediaWeb.Domain.Podcast.PodcastRatingReview", b =>
-                {
-                    b.Property<int>("PodcastEpisodeId");
-
-                    b.Property<string>("UserId");
-
-                    b.Property<int>("Rating");
-
-                    b.Property<string>("Review");
-
-                    b.HasKey("PodcastEpisodeId", "UserId");
-
-                    b.ToTable("PodcastRatingReview");
-                });
-
-            modelBuilder.Entity("MediaWeb.Domain.Podcast.UserPodcastFavourite", b =>
-                {
-                    b.Property<string>("UserId");
-
-                    b.Property<int>("PodcastEpisodeId");
-
-                    b.HasKey("UserId", "PodcastEpisodeId");
-
-                    b.HasIndex("PodcastEpisodeId");
-
-                    b.ToTable("UserPodcastFavourite");
-                });
-
-            modelBuilder.Entity("MediaWeb.Domain.Podcast.UserPodcastGeluisterdStatus", b =>
-                {
-                    b.Property<int>("PodcastId");
-
-                    b.Property<string>("UserId");
-
-                    b.Property<int>("StatusId");
-
-                    b.HasKey("PodcastId", "UserId");
-
-                    b.ToTable("UserPodcastGeluisterdStatus");
-                });
-
-            modelBuilder.Entity("MediaWeb.Domain.Podcast.UserPodcastPlaylist", b =>
-                {
-                    b.Property<string>("UserId");
-
-                    b.Property<int>("PlaylistId");
-
-                    b.Property<int>("PodcastEpisodeId");
-
-                    b.HasKey("UserId", "PlaylistId", "PodcastEpisodeId");
-
-                    b.HasIndex("PodcastEpisodeId");
-
-                    b.ToTable("UserPodcastPlaylist");
                 });
 
             modelBuilder.Entity("MediaWeb.Domain.Serie.GenreSerie", b =>
@@ -1129,6 +915,14 @@ namespace MediaWeb.Migrations
                         .HasForeignKey("NummerId");
                 });
 
+            modelBuilder.Entity("MediaWeb.Domain.Muziek.MuziekAlbum", b =>
+                {
+                    b.HasOne("MediaWeb.Domain.Muziek.MuziekArtiest", "Artiest")
+                        .WithMany("Album")
+                        .HasForeignKey("ArtiestId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("MediaWeb.Domain.Muziek.MuziekRatingReview", b =>
                 {
                     b.HasOne("MediaWeb.Domain.Muziek.Nummer")
@@ -1141,11 +935,6 @@ namespace MediaWeb.Migrations
                     b.HasOne("MediaWeb.Domain.Muziek.MuziekAlbum", "Album")
                         .WithMany("Nummer")
                         .HasForeignKey("AlbumId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("MediaWeb.Domain.Muziek.MuziekArtiest", "Artiest")
-                        .WithMany("Nummer")
-                        .HasForeignKey("ArtiestId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -1168,46 +957,6 @@ namespace MediaWeb.Migrations
                     b.HasOne("MediaWeb.Domain.Muziek.Nummer")
                         .WithMany("Playlists")
                         .HasForeignKey("NummerId");
-                });
-
-            modelBuilder.Entity("MediaWeb.Domain.Podcast.GenrePodcast", b =>
-                {
-                    b.HasOne("MediaWeb.Domain.Podcast.Podcast")
-                        .WithMany("Genres")
-                        .HasForeignKey("PodcastId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MediaWeb.Domain.Podcast.PodcastEpisode", b =>
-                {
-                    b.HasOne("MediaWeb.Domain.Podcast.Podcast", "Podcast")
-                        .WithMany("Episodes")
-                        .HasForeignKey("PodcastId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MediaWeb.Domain.Podcast.PodcastRatingReview", b =>
-                {
-                    b.HasOne("MediaWeb.Domain.Podcast.PodcastEpisode")
-                        .WithMany("RatingReviews")
-                        .HasForeignKey("PodcastEpisodeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MediaWeb.Domain.Podcast.UserPodcastFavourite", b =>
-                {
-                    b.HasOne("MediaWeb.Domain.Podcast.PodcastEpisode")
-                        .WithMany("Favourites")
-                        .HasForeignKey("PodcastEpisodeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MediaWeb.Domain.Podcast.UserPodcastPlaylist", b =>
-                {
-                    b.HasOne("MediaWeb.Domain.Podcast.PodcastEpisode")
-                        .WithMany("Playlists")
-                        .HasForeignKey("PodcastEpisodeId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("MediaWeb.Domain.Serie.GenreSerie", b =>

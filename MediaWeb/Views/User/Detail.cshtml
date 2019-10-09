@@ -1,0 +1,17 @@
+﻿@model MediaWeb.Models.User.ListDetailViewModel
+<strong>Titel</strong>
+<p>@Model.Titel</p>
+<strong>Items</strong>
+@if (Model.Items.Count == 0)
+{
+    <p>Deze afspeellijst is nog leeg!</p>
+}
+else
+{
+    @foreach (var item in Model.Items)
+    {
+        <p>@item.Titel</p>
+    }
+}
+
+<a asp-controller="User" asp-action="Delete" asp-route-id="@Model.Id" asp-route-type="@Model.Type" onclick="return confirm('Are you sure you want to delete this?')"></a>

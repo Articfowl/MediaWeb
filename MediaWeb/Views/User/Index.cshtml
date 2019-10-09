@@ -1,0 +1,62 @@
+﻿@model MediaWeb.Models.User.IndexListViewModel
+
+<table class="table">
+    <tr><td><strong>Muziek playlists</strong></td></tr>
+    @if (Model.MuziekList.Count == 0)
+    {
+        <tr><td><strong>U heeft nog geen muziek playlists!!</strong></td></tr>
+    }
+    else
+    {
+        <tr>
+            @foreach (var item in Model.MuziekList)
+            {
+
+                    <td><a asp-action="Detail" asp-controller="User" asp-route-id="@item.Id" asp-route-type="@item.Type">@item.Titel</a></td>
+
+            }
+        </tr>
+    }
+</table>
+<br />
+<table class="table">
+    <tr><td><strong>Film playlists</strong></td></tr>
+    @if (Model.FilmList.Count == 0)
+    {
+        <tr><td><strong>U heeft nog geen film playlists!!</strong></td></tr>
+    }
+    else
+    {
+        <tr>
+            @foreach (var item in Model.FilmList)
+            {
+
+                    <td><a asp-action="Detail" asp-controller="User" asp-route-id="@item.Id" asp-route-type="@item.Type">@item.Titel</a></td>
+
+            }
+        </tr>
+    }
+</table>
+<br />
+<table class="table">
+    <tr><td><strong>Serie playlists</strong></td></tr>
+    @if (Model.SerieList.Count == 0)
+    {
+        <tr><td><strong>U heeft nog geen serie playlists!!</strong></td></tr>
+    }
+    else
+    {
+        <tr>
+            @foreach (var item in Model.SerieList)
+            {
+
+                {
+                    <td><a asp-action="Detail" asp-controller="User" asp-route-id="@item.Id" asp-route-type="@item.Type">@item.Titel</a></td>
+                }
+
+            }
+        </tr>
+    }
+</table>
+<br /><br />
+<a asp-action="Create" asp-controller="User">Playlist toevoegen</a>

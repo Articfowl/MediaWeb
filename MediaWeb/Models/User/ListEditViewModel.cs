@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MediaWeb.Domain.Podcast
+namespace MediaWeb.Models.User
 {
-    public class PodcastGeluisterdStatus
+    public class ListEditViewModel
     {
         public int Id { get; set; }
-        public string Status { get; set; }
+        public string Titel { get; set; }
+        public string Type { get; set; }
     }
 }

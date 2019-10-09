@@ -1,12 +1,21 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
-
+@font-face {
+    font-family: "TitleFont";
+    src: url('../fonts/Skyfont-NonCommercial.otf');
+}
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
 }
-
+#Title{
+    font-family:TitleFont;
+    font-size:65px;
+    position:absolute;
+    left:50px;
+    
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -17,7 +26,9 @@ html {
     font-size: 16px;
   }
 }
-
+img{
+    width:150px;
+}
 .border-top {
   border-top: 1px solid #e5e5e5;
 }
@@ -33,17 +44,35 @@ button.accept-policy {
   font-size: 1rem;
   line-height: inherit;
 }
-
+table a{
+    color:black;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
   position: relative;
   min-height: 100%;
 }
-
+td img{
+    width:100px;
+}
+td{
+    margin-left:2px;
+    margin-right:2px;
+}
+.navbar {
+    height:80px;
+    background: linear-gradient(rgb(150,150,150),rgb(55,55,55));
+}
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+.collapse a, .collapse button {
+    color: rgb(225,225,225)!important;
+}
+.navbar li:hover {
+    font-size : 28px; 
 }
 .footer {
   position: absolute;
@@ -53,4 +82,11 @@ body {
   /* Set the fixed height of the footer here */
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
+}
+
+/* My css*/
+.muziekHomeLink{
+    color:Blue;
+    text-decoration:underline;
+    font-size:24px;
 }

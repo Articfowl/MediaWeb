@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using MediaWeb.Domain.Film;
-using MediaWeb.Domain.Podcast;
 using MediaWeb.Domain.Muziek;
 using MediaWeb.Domain.Serie;
 
@@ -40,17 +39,6 @@ namespace MediaWeb.Data
         public DbSet<MuziekRatingReview> MuziekRatingReview { get; set; }
         public DbSet<UserMuziekFavourite> UserMuziekFavourite { get; set; }
         public DbSet<UserMuziekPlaylist> UserMuziekPlaylist { get; set; }
-        // Podcast DbSets
-        public DbSet<GenrePodcast> GenrePodcast { get; set; }
-        public DbSet<PodcastGeluisterdStatus> PodcastGeluisterdStatus { get; set; }
-        public DbSet<UserPodcastGeluisterdStatus> UserPodcastGeluisterdStatus { get; set; }
-        public DbSet<Podcast> Podcast { get; set; }
-        public DbSet<PodcastEpisode> PodcastEpisode { get; set; }
-        public DbSet<PodcastGenre> PodcastGenre { get; set; }
-        public DbSet<PodcastPlaylist> PodcastPlaylist { get; set; }
-        public DbSet<PodcastRatingReview> RatingReviews { get; set; }
-        public DbSet<UserPodcastFavourite> UserPodcastFavourite { get; set; }
-        public DbSet<UserPodcastPlaylist> UserPodcastPlaylist { get; set; }
         // Serie DbSets
         public DbSet<GenreSerie> GenreSerie { get; set; }
         public DbSet<Serie> Serie { get; set; }
@@ -94,17 +82,6 @@ namespace MediaWeb.Data
             builder.Entity<UserMuziekFavourite>().ToTable("UserMuziekFavourite");
             builder.Entity<UserMuziekPlaylist>().ToTable("UserMuziekPlaylist");
             builder.Entity<MuziekArtiest>().ToTable("MuziekArtiest");
-            //Podcast
-            builder.Entity<GenrePodcast>().ToTable("GenrePodcast");
-            builder.Entity<Podcast>().ToTable("Podcast");
-            builder.Entity<PodcastGeluisterdStatus>().ToTable("PodcastGeluisterdStatus");
-            builder.Entity<UserPodcastGeluisterdStatus>().ToTable("UserPodcastGeluisterdStatus");
-            builder.Entity<PodcastEpisode>().ToTable("PodcastEpisode");
-            builder.Entity<PodcastGenre>().ToTable("PodcastGenre");
-            builder.Entity<PodcastPlaylist>().ToTable("PodcastPlaylist");
-            builder.Entity<PodcastRatingReview>().ToTable("PodcastRatingReview");
-            builder.Entity<UserPodcastFavourite>().ToTable("UserPodcastFavourite");
-            builder.Entity<UserPodcastPlaylist>().ToTable("UserPodcastPlaylist");
             //Serie
             builder.Entity<GenreSerie>().ToTable("GenreSerie");
             builder.Entity<Serie>().ToTable("Serie");
@@ -130,12 +107,7 @@ namespace MediaWeb.Data
             builder.Entity<UserMuziekFavourite>().HasKey(x => new { x.MuziekId, x.UserId });
             builder.Entity<MuziekRatingReview>().HasKey(x => new { x.UserId, x.MuziekId });
             builder.Entity<UserMuziekGeluisterdStatus>().HasKey(x => new { x.UserId, x.MuziekId });
-            //Podcast
-            builder.Entity<PodcastRatingReview>().HasKey(x => new { x.PodcastEpisodeId, x.UserId });
-            builder.Entity<GenrePodcast>().HasKey(x => new { x.GenreId, x.PodcastId });
-            builder.Entity<UserPodcastPlaylist>().HasKey(x => new { x.UserId, x.PlaylistId, x.PodcastEpisodeId });
-            builder.Entity<UserPodcastGeluisterdStatus>().HasKey(x => new { x.PodcastId, x.UserId });
-            builder.Entity<UserPodcastFavourite>().HasKey(x => new { x.UserId, x.PodcastEpisodeId });
+            
             //Serie
             builder.Entity<GenreSerie>().HasKey(x => new { x.GenreId, x.SerieId });
             builder.Entity<SerieRatingReview>().HasKey(x => new { x.UserId, x.SerieEpisodeId });
@@ -162,15 +134,7 @@ namespace MediaWeb.Data
                 new MuziekGeluisterdStatus() { Id = 2, Status = "Wil ik niet naar luisteren" },
                 new MuziekGeluisterdStatus() { Id = 3, Status = "Geluisterd" }, 
                 new MuziekGeluisterdStatus() { Id = 4, Status = "Wil ik naar luisteren" });
-            //Podcast
-            builder.Entity<PodcastGenre>().HasData(new PodcastGenre() { Id = 1, Genre = "Science" }, new PodcastGenre() { Id = 2, Genre = "Comedy" },
-                new PodcastGenre() { Id = 3, Genre = "Educational" }, new PodcastGenre() { Id = 4, Genre = "Gaming" },
-                new PodcastGenre() { Id = 5, Genre = "Music" }, new PodcastGenre() { Id = 6, Genre = "News" },
-                new PodcastGenre() { Id = 7, Genre = "Sci-Fi" }, new PodcastGenre() { Id = 8, Genre = "Sport" });
-            builder.Entity<PodcastGeluisterdStatus>().HasData(new PodcastGeluisterdStatus() { Id = 1, Status = "Niet geluisterd" },
-                new PodcastGeluisterdStatus() { Id = 2, Status = "Wil ik niet naar luisteren" },
-                new PodcastGeluisterdStatus() { Id = 3, Status = "Geluisterd" },
-                new PodcastGeluisterdStatus() { Id = 4, Status = "Wil ik naar luisteren" });
+           
             //Serie
             builder.Entity<SerieGenre>().HasData(new SerieGenre() { Id = 1, Genre = "Horror" }, new SerieGenre() { Id = 2, Genre = "Sci-Fi" },
                 new SerieGenre() { Id = 3, Genre = "Action" }, new SerieGenre() { Id = 4, Genre = "Thriller" },
@@ -180,7 +144,6 @@ namespace MediaWeb.Data
                 new SerieGezienStatus() { Id = 2, Status = "Wil ik niet zien" },
                 new SerieGezienStatus() { Id = 3, Status = "Gezien" },
                 new SerieGezienStatus() { Id = 4, Status = "Wil ik zien" });
-
             base.OnModelCreating(builder);
         }
     }

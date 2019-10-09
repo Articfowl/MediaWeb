@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MediaWeb.Migrations
 {
-    public partial class NewDb : Migration
+    public partial class newdb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -96,7 +96,8 @@ namespace MediaWeb.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Titel = table.Column<string>(nullable: true)
+                    Titel = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -109,25 +110,11 @@ namespace MediaWeb.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Naam = table.Column<int>(nullable: false)
+                    Naam = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FilmRegisseur", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MuziekAlbum",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Titel = table.Column<string>(nullable: true),
-                    AlbumArt = table.Column<byte[]>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MuziekAlbum", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -175,66 +162,12 @@ namespace MediaWeb.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Titel = table.Column<string>(nullable: true)
+                    Titel = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MuziekPlaylist", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Podcast",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Titel = table.Column<string>(nullable: true),
-                    Auteur = table.Column<string>(nullable: true),
-                    Zichtbaar = table.Column<bool>(nullable: false),
-                    PodcastArt = table.Column<byte[]>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Podcast", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PodcastGeluisterdStatus",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Status = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PodcastGeluisterdStatus", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PodcastGenre",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Genre = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PodcastGenre", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PodcastPlaylist",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Titel = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PodcastPlaylist", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -284,24 +217,12 @@ namespace MediaWeb.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Titel = table.Column<string>(nullable: true)
+                    Titel = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SeriePlaylist", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserPodcastGeluisterdStatus",
-                columns: table => new
-                {
-                    PodcastId = table.Column<int>(nullable: false),
-                    UserId = table.Column<string>(nullable: false),
-                    StatusId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserPodcastGeluisterdStatus", x => new { x.PodcastId, x.UserId });
                 });
 
             migrationBuilder.CreateTable(
@@ -536,70 +457,22 @@ namespace MediaWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Nummer",
+                name: "MuziekAlbum",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Titel = table.Column<string>(nullable: true),
-                    Lengte = table.Column<int>(nullable: false),
                     ArtiestId = table.Column<int>(nullable: false),
-                    AlbumId = table.Column<int>(nullable: false),
-                    Zichtbaar = table.Column<bool>(nullable: false)
+                    AlbumArt = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Nummer", x => x.Id);
+                    table.PrimaryKey("PK_MuziekAlbum", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Nummer_MuziekAlbum_AlbumId",
-                        column: x => x.AlbumId,
-                        principalTable: "MuziekAlbum",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Nummer_MuziekArtiest_ArtiestId",
+                        name: "FK_MuziekAlbum_MuziekArtiest_ArtiestId",
                         column: x => x.ArtiestId,
                         principalTable: "MuziekArtiest",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "GenrePodcast",
-                columns: table => new
-                {
-                    GenreId = table.Column<int>(nullable: false),
-                    PodcastId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GenrePodcast", x => new { x.GenreId, x.PodcastId });
-                    table.ForeignKey(
-                        name: "FK_GenrePodcast_Podcast_PodcastId",
-                        column: x => x.PodcastId,
-                        principalTable: "Podcast",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PodcastEpisode",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Titel = table.Column<string>(nullable: true),
-                    ReleaseDate = table.Column<DateTime>(nullable: false),
-                    Lengte = table.Column<int>(nullable: false),
-                    PodcastId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PodcastEpisode", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PodcastEpisode_Podcast_PodcastId",
-                        column: x => x.PodcastId,
-                        principalTable: "Podcast",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -639,6 +512,85 @@ namespace MediaWeb.Migrations
                         name: "FK_SerieEpisode_Serie_SerieId",
                         column: x => x.SerieId,
                         principalTable: "Serie",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Nummer",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Titel = table.Column<string>(nullable: true),
+                    Lengte = table.Column<int>(nullable: false),
+                    AlbumId = table.Column<int>(nullable: false),
+                    Zichtbaar = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Nummer", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Nummer_MuziekAlbum_AlbumId",
+                        column: x => x.AlbumId,
+                        principalTable: "MuziekAlbum",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SerieRatingReview",
+                columns: table => new
+                {
+                    SerieEpisodeId = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: false),
+                    Review = table.Column<string>(nullable: true),
+                    Rating = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SerieRatingReview", x => new { x.UserId, x.SerieEpisodeId });
+                    table.ForeignKey(
+                        name: "FK_SerieRatingReview_SerieEpisode_SerieEpisodeId",
+                        column: x => x.SerieEpisodeId,
+                        principalTable: "SerieEpisode",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserSerieFavourite",
+                columns: table => new
+                {
+                    SerieEpisodeId = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserSerieFavourite", x => new { x.SerieEpisodeId, x.UserId });
+                    table.ForeignKey(
+                        name: "FK_UserSerieFavourite_SerieEpisode_SerieEpisodeId",
+                        column: x => x.SerieEpisodeId,
+                        principalTable: "SerieEpisode",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserSeriePlaylist",
+                columns: table => new
+                {
+                    SerieEpisodeId = table.Column<int>(nullable: false),
+                    PlaylistId = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserSeriePlaylist", x => new { x.UserId, x.SerieEpisodeId, x.PlaylistId });
+                    table.ForeignKey(
+                        name: "FK_UserSeriePlaylist_SerieEpisode_SerieEpisodeId",
+                        column: x => x.SerieEpisodeId,
+                        principalTable: "SerieEpisode",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -742,120 +694,6 @@ namespace MediaWeb.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "PodcastRatingReview",
-                columns: table => new
-                {
-                    PodcastEpisodeId = table.Column<int>(nullable: false),
-                    UserId = table.Column<string>(nullable: false),
-                    Review = table.Column<string>(nullable: true),
-                    Rating = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PodcastRatingReview", x => new { x.PodcastEpisodeId, x.UserId });
-                    table.ForeignKey(
-                        name: "FK_PodcastRatingReview_PodcastEpisode_PodcastEpisodeId",
-                        column: x => x.PodcastEpisodeId,
-                        principalTable: "PodcastEpisode",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserPodcastFavourite",
-                columns: table => new
-                {
-                    PodcastEpisodeId = table.Column<int>(nullable: false),
-                    UserId = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserPodcastFavourite", x => new { x.UserId, x.PodcastEpisodeId });
-                    table.ForeignKey(
-                        name: "FK_UserPodcastFavourite_PodcastEpisode_PodcastEpisodeId",
-                        column: x => x.PodcastEpisodeId,
-                        principalTable: "PodcastEpisode",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserPodcastPlaylist",
-                columns: table => new
-                {
-                    PodcastEpisodeId = table.Column<int>(nullable: false),
-                    PlaylistId = table.Column<int>(nullable: false),
-                    UserId = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserPodcastPlaylist", x => new { x.UserId, x.PlaylistId, x.PodcastEpisodeId });
-                    table.ForeignKey(
-                        name: "FK_UserPodcastPlaylist_PodcastEpisode_PodcastEpisodeId",
-                        column: x => x.PodcastEpisodeId,
-                        principalTable: "PodcastEpisode",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SerieRatingReview",
-                columns: table => new
-                {
-                    SerieEpisodeId = table.Column<int>(nullable: false),
-                    UserId = table.Column<string>(nullable: false),
-                    Review = table.Column<string>(nullable: true),
-                    Rating = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SerieRatingReview", x => new { x.UserId, x.SerieEpisodeId });
-                    table.ForeignKey(
-                        name: "FK_SerieRatingReview_SerieEpisode_SerieEpisodeId",
-                        column: x => x.SerieEpisodeId,
-                        principalTable: "SerieEpisode",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserSerieFavourite",
-                columns: table => new
-                {
-                    SerieEpisodeId = table.Column<int>(nullable: false),
-                    UserId = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserSerieFavourite", x => new { x.SerieEpisodeId, x.UserId });
-                    table.ForeignKey(
-                        name: "FK_UserSerieFavourite_SerieEpisode_SerieEpisodeId",
-                        column: x => x.SerieEpisodeId,
-                        principalTable: "SerieEpisode",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserSeriePlaylist",
-                columns: table => new
-                {
-                    SerieEpisodeId = table.Column<int>(nullable: false),
-                    PlaylistId = table.Column<int>(nullable: false),
-                    UserId = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserSeriePlaylist", x => new { x.UserId, x.SerieEpisodeId, x.PlaylistId });
-                    table.ForeignKey(
-                        name: "FK_UserSeriePlaylist_SerieEpisode_SerieEpisodeId",
-                        column: x => x.SerieEpisodeId,
-                        principalTable: "SerieEpisode",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "FilmGenre",
                 columns: new[] { "Id", "Genre" },
@@ -878,8 +716,8 @@ namespace MediaWeb.Migrations
                 {
                     { 4, "Wil ik zien" },
                     { 3, "Gezien" },
-                    { 2, "Wil ik nooit zien" },
-                    { 1, "Niet gezien" }
+                    { 1, "Niet gezien" },
+                    { 2, "Wil ik nooit zien" }
                 });
 
             migrationBuilder.InsertData(
@@ -898,42 +736,16 @@ namespace MediaWeb.Migrations
                 columns: new[] { "Id", "Genre" },
                 values: new object[,]
                 {
-                    { 10, "Punk" },
-                    { 8, "Instrumental" },
                     { 7, "Alternative" },
-                    { 6, "Rap" },
+                    { 10, "Punk" },
                     { 9, "Orchestral" },
-                    { 4, "Pop" },
+                    { 8, "Instrumental" },
+                    { 6, "Rap" },
                     { 3, "Metal" },
+                    { 4, "Pop" },
                     { 2, "Jazz" },
                     { 1, "Rock" },
                     { 5, "Hip-hop" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "PodcastGeluisterdStatus",
-                columns: new[] { "Id", "Status" },
-                values: new object[,]
-                {
-                    { 1, "Niet geluisterd" },
-                    { 2, "Wil ik niet naar luisteren" },
-                    { 3, "Geluisterd" },
-                    { 4, "Wil ik naar luisteren" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "PodcastGenre",
-                columns: new[] { "Id", "Genre" },
-                values: new object[,]
-                {
-                    { 8, "Sport" },
-                    { 7, "Sci-Fi" },
-                    { 5, "Music" },
-                    { 6, "News" },
-                    { 3, "Educational" },
-                    { 2, "Comedy" },
-                    { 1, "Science" },
-                    { 4, "Gaming" }
                 });
 
             migrationBuilder.InsertData(
@@ -1007,14 +819,14 @@ namespace MediaWeb.Migrations
                 column: "NummerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GenrePodcast_PodcastId",
-                table: "GenrePodcast",
-                column: "PodcastId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_GenreSerie_SerieId",
                 table: "GenreSerie",
                 column: "SerieId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MuziekAlbum_ArtiestId",
+                table: "MuziekAlbum",
+                column: "ArtiestId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MuziekRatingReview_NummerId",
@@ -1025,16 +837,6 @@ namespace MediaWeb.Migrations
                 name: "IX_Nummer_AlbumId",
                 table: "Nummer",
                 column: "AlbumId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Nummer_ArtiestId",
-                table: "Nummer",
-                column: "ArtiestId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PodcastEpisode_PodcastId",
-                table: "PodcastEpisode",
-                column: "PodcastId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SerieEpisode_SerieId",
@@ -1065,16 +867,6 @@ namespace MediaWeb.Migrations
                 name: "IX_UserMuziekPlaylist_NummerId",
                 table: "UserMuziekPlaylist",
                 column: "NummerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserPodcastFavourite_PodcastEpisodeId",
-                table: "UserPodcastFavourite",
-                column: "PodcastEpisodeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserPodcastPlaylist_PodcastEpisodeId",
-                table: "UserPodcastPlaylist",
-                column: "PodcastEpisodeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserSeriePlaylist_SerieEpisodeId",
@@ -1121,9 +913,6 @@ namespace MediaWeb.Migrations
                 name: "GenreMuziek");
 
             migrationBuilder.DropTable(
-                name: "GenrePodcast");
-
-            migrationBuilder.DropTable(
                 name: "GenreSerie");
 
             migrationBuilder.DropTable(
@@ -1137,18 +926,6 @@ namespace MediaWeb.Migrations
 
             migrationBuilder.DropTable(
                 name: "MuziekRatingReview");
-
-            migrationBuilder.DropTable(
-                name: "PodcastGeluisterdStatus");
-
-            migrationBuilder.DropTable(
-                name: "PodcastGenre");
-
-            migrationBuilder.DropTable(
-                name: "PodcastPlaylist");
-
-            migrationBuilder.DropTable(
-                name: "PodcastRatingReview");
 
             migrationBuilder.DropTable(
                 name: "RegisseurFilm");
@@ -1184,15 +961,6 @@ namespace MediaWeb.Migrations
                 name: "UserMuziekPlaylist");
 
             migrationBuilder.DropTable(
-                name: "UserPodcastFavourite");
-
-            migrationBuilder.DropTable(
-                name: "UserPodcastGeluisterdStatus");
-
-            migrationBuilder.DropTable(
-                name: "UserPodcastPlaylist");
-
-            migrationBuilder.DropTable(
                 name: "UserSerieFavourite");
 
             migrationBuilder.DropTable(
@@ -1214,22 +982,16 @@ namespace MediaWeb.Migrations
                 name: "Nummer");
 
             migrationBuilder.DropTable(
-                name: "PodcastEpisode");
-
-            migrationBuilder.DropTable(
                 name: "SerieEpisode");
 
             migrationBuilder.DropTable(
                 name: "MuziekAlbum");
 
             migrationBuilder.DropTable(
-                name: "MuziekArtiest");
-
-            migrationBuilder.DropTable(
-                name: "Podcast");
-
-            migrationBuilder.DropTable(
                 name: "Serie");
+
+            migrationBuilder.DropTable(
+                name: "MuziekArtiest");
         }
     }
 }

@@ -10,6 +10,8 @@ namespace MediaWeb.Domain.Muziek
         public int Id { get; set; }
         public string Titel { get; set; }
         public ICollection<Nummer> Nummer { get; set; }
+        public int  ArtiestId { get; set; }
+        public MuziekArtiest Artiest { get; set; }
         public byte[] AlbumArt { get; set; }
 
     }

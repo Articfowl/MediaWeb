@@ -1,0 +1,33 @@
+﻿@model MediaWeb.Models.Muziek.MuziekCreateViewModel
+    <form asp-action="Create" asp-controller="Muziek">
+        <div class="form-group">
+            <label asp-for="Titel"></label>
+            <input asp-for="Titel" />
+            <span class="text-danger" asp-validation-for="Titel"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Lengte"></label>
+            <input asp-for="Lengte" />
+            <span class="text-danger" asp-validation-for="Lengte"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="AlbumTitel"></label>
+            <input hidden asp-for="AlbumTitel" /> <strong>@Model.AlbumTitel</strong>
+            <span class="text-danger" asp-validation-for="AlbumTitel"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Artiest"></label>
+            <input hidden  asp-for="Artiest" /> <strong>@Model.Artiest</strong>
+            <span class="text-danger" asp-validation-for="Artiest"></span>
+        </div>
+        <div class="form-group">
+                @for (int i = 0; i < Model.AllGenres.Count; i++)
+                {
+                    <input type="checkbox" name="genres" value="@i" />@Model.AllGenres[i]
+                }
+        </div>
+        <div class="form-group">
+            <button class="btn-primary" type="submit">Maak nummer</button>
+        </div>
+    </form>
+

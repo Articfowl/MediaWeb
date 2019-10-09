@@ -1,0 +1,63 @@
+﻿@model MediaWeb.Models.Film.FilmEditViewModel
+
+<h1>Edit</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form enctype="multipart/form-data" asp-action="Edit" asp-controller="Film">
+            <div class="form-group">
+                <label asp-for="Titel" class="control-label"></label>
+                <input asp-for="Titel" class="form-control" />
+                <span asp-validation-for="Titel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lengte" class="control-label"></label>
+                <input asp-for="Lengte" class="form-control" />
+                <span asp-validation-for="Lengte" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Beschrijving" class="control-label"></label>
+                <input asp-for="Beschrijving" class="form-control" />
+                <span asp-validation-for="Beschrijving" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label> Genres :</label>
+                @for (int i = 0; i < Model.GenresList.Count; i++)
+                {
+                    if (Model.SelectedGenres.Contains(Model.GenresList[i]))
+                    {
+                        <input checked name="Genres" type="checkbox" value="@(i+1)" />@Model.GenresList[i]
+                    }
+                    else
+                    {
+                        <input name="Genres" type="checkbox" value="@(i+1)" />@Model.GenresList[i]
+                    }
+
+                }
+            </div>
+            <div id="RegiInput" class="form-group">
+                <label asp-for="Regisseurs"></label>
+                @foreach (var item in Model.Regisseurs)
+                {
+                    <input name="Regi" type="text" value="@item" />
+                }
+                <input onchange="newFilmInput()" name="Regi" type="text" />
+            </div>
+            <div class="form-group">
+                <img src="@Model.GetPicture" alt="OriginalPicture" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Foto" class="control-label"></label>
+                <input asp-for="Foto" class="form-control" />
+                <span asp-validation-for="Foto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

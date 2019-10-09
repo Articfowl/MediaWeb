@@ -1,0 +1,36 @@
+﻿@model MediaWeb.Models.Film.FilmCreateViewModel
+    <form enctype="multipart/form-data" asp-controller="Film" asp-action="Create">
+        <div class="form-group">
+            <label asp-for="Titel"></label>
+            <input asp-for="Titel" />
+            <span class="text-danger" asp-validation-for="Titel"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Lengte"></label>
+            <input asp-for="Lengte" />
+            <span class="text-danger" asp-validation-for="Lengte"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Beschrijving"></label>
+            <input asp-for="Beschrijving" />
+            <span class="text-danger" asp-validation-for="Beschrijving"></span>
+        </div>
+        <div class="form-group">
+            <label> Genres :</label>
+            @for (int i = 0; i < Model.GenresList.Count(); i++)
+            {
+                <input name="Genres" type="checkbox" value="@(i+1)" />@Model.GenresList[i]
+            }
+        </div>
+        <div id="RegiInput" class="form-group">
+            <label asp-for="Regisseurs"></label>
+            <input onchange="newFilmInput()" name="Regi" type="text" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Foto"></label>
+            <input class="form-control" asp-for="Foto" />
+        </div>
+        <div class="form-group">
+            <button class="btn-primary" type="submit">Create film</button>
+        </div>
+    </form>
