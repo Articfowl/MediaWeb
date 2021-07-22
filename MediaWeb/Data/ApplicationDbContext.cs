@@ -124,6 +124,7 @@ namespace MediaWeb.Data
             builder.Entity<FilmGezienStatus>().HasData(new FilmGezienStatus() { Id = 1, Status = "Niet gezien" },
                 new FilmGezienStatus() { Id = 2, Status = "Wil ik nooit zien" }, new FilmGezienStatus() { Id = 3, Status = "Gezien" },
                 new FilmGezienStatus() { Id = 4, Status = "Wil ik zien" });
+
             //Muziek
             builder.Entity<MuziekGenre>().HasData(new MuziekGenre() { Id = 1, Genre = "Rock" }, new MuziekGenre() { Id = 2, Genre = "Jazz" },
                 new MuziekGenre() { Id = 3, Genre = "Metal" }, new MuziekGenre() { Id = 4, Genre = "Pop" },
@@ -143,7 +144,8 @@ namespace MediaWeb.Data
             builder.Entity<SerieGezienStatus>().HasData(new SerieGezienStatus() { Id = 1, Status = "Niet gezien" },
                 new SerieGezienStatus() { Id = 2, Status = "Wil ik niet zien" },
                 new SerieGezienStatus() { Id = 3, Status = "Gezien" },
-                new SerieGezienStatus() { Id = 4, Status = "Wil ik zien" });
+                new SerieGezienStatus() { Id = 4, Status = "Wil ik zien" },
+                new SerieGezienStatus() { Id = 5, Status = "Nog niet alles gezien" });
             base.OnModelCreating(builder);
         }
     }

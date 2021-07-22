@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="Models\Admin\" />
-    <Folder Include="Models\Serie\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Serie\" />
   </ItemGroup>
